@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+
+    <div class="text-left">
+        <h1>{{user.first_name}}'s cart</h1>
+        <div class="list-group">
+          <a href="#" class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Item name you want to buy</h5>
+              <medium>$10.14</medium>
+            </div>
+            <p class="mb-1">Item description can go here</p>
+            <small>Quantity: 3</small>
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Item you want to buy</h5>
+              <medium>$10.14</medium>
+            </div>
+            <p class="mb-1">Item description can go here</p>
+            <small>Quantity: 1</small>
+          </a>
+          <a href="#" class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">Item you want to buy</h5>
+              <medium>$10.14</medium>
+            </div>
+            <p class="mb-1">Item description can go here</p>
+            <small>Quantity: 1</small>
+          </a>
+        </div>
+    </div>
+{% endblock %}

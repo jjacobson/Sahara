@@ -22,5 +22,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),  # new
     path('list-item/', TemplateView.as_view(template_name='product/list-item.html'), name='list-item'),
     path('product/', TemplateView.as_view(template_name='product/product.html'), name='product'),
+    path('cart/', TemplateView.as_view(template_name='cart/cart.html'), name='cart'),
+    path('user_profile/', TemplateView.as_view(template_name='user_profile/profile.html'), name='profile'),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
 ]
