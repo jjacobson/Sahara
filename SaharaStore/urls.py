@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+from . import views as homepage_views
 from product import views as product_views
 
 urlpatterns = [
@@ -26,5 +27,5 @@ urlpatterns = [
     path('product/', TemplateView.as_view(template_name='product/product.html'), name='product'),
     path('cart/', TemplateView.as_view(template_name='cart/cart.html'), name='cart'),
     path('user_profile/', TemplateView.as_view(template_name='user_profile/profile.html'), name='profile'),
-    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('', homepage_views.view_homepage, name='index'),
 ]

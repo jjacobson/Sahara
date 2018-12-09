@@ -19,26 +19,13 @@
                     <span class="title">Product Categories</span>
                     <ul class="nav flex-column">
                         <li>
-                            <a class="nav-item active" href="https://getbootstrap.com/">Featured</a>
+                            <a class="nav-item active" href="#">Featured</a>
                         </li>
-                        <li>
-                            <a class="nav-item" href="https://getbootstrap.com/">Clothing</a>
-                        </li>
-                        <li>
-                            <a class="nav-item" href="https://getbootstrap.com">Electronics</a>
-                        </li>
-                        <li>
-                            <a class="nav-item" href="https://getbootstrap.com">Property</a>
-                        </li>
-                        <li>
-                            <a class="nav-item" href="https://getbootstrap.com">School Supplies</a>
-                        </li>
-                        <li>
-                            <a class="nav-item" href="https://getbootstrap.com">Furniture</a>
-                        </li>
-                        <li>
-                            <a class="nav-item" href="https://getbootstrap.com">Art</a>
-                        </li>
+                        {% for category in categories %}
+                            <li>
+                                <a class="nav-item" href="#">{{ category.name }}</a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </li>
             </ul>
@@ -50,58 +37,17 @@
     <div class="content is-shown">
         <h1>Featured</h1>
         <div class="row">
+            {% for product in products %}
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="card">
                     <img class="card-img-top" src="http://via.placeholder.com/216x200" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                            to additional content. This content is a little bit longer.</p>
-                        <p class="card-text">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p>
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <h7 class="card-price">${{ product.price }}</h7>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="http://via.placeholder.com/216x200" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                            to additional content. This content is a little bit longer.</p>
-                        <p class="card-text">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="http://via.placeholder.com/216x200" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                            to additional content. This content is a little bit longer.</p>
-                        <p class="card-text">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card">
-                    <img class="card-img-top" src="http://via.placeholder.com/216x200" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                            to additional content. This content is a little bit longer.</p>
-                        <p class="card-text">
-                            <small class="text-muted">Last updated 3 mins ago</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
