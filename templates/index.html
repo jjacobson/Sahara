@@ -6,7 +6,6 @@
     <link href="{% static 'css/navcolumn.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-
 {% block content %}
 
     <!-- Sidebar Navigation -->
@@ -39,13 +38,13 @@
         <div class="row">
             {% for product in products %}
             <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="card">
+                <a class="card product" href="{% url 'product' pk=product.pk %}">
                     <img class="card-img-top" src="http://via.placeholder.com/216x200" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <h7 class="card-price">${{ product.price }}</h7>
                     </div>
-                </div>
+                </a>
             </div>
             {% endfor %}
         </div>

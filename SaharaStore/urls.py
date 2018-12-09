@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # new
     path('list-item/', product_views.sell_item, name='list-item'),
-    path('product/', TemplateView.as_view(template_name='product/product.html'), name='product'),
+    path('product/<int:pk>', product_views.product_detail_view, name='product'),
     path('cart/', TemplateView.as_view(template_name='cart/cart.html'), name='cart'),
     path('user_profile/', TemplateView.as_view(template_name='user_profile/profile.html'), name='profile'),
     path('', homepage_views.view_homepage, name='index'),
