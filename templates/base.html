@@ -45,7 +45,7 @@
     {% block nav %}{% endblock %}
     {% if user.is_authenticated %}
         <form class="form-inline">
-            <a type="button" href="{% url 'cart' %}" class="btn btn-primary" role="button">
+            <a href="{% url 'cart' %}" class="btn btn-primary cart" role="button">
                 Cart <span class="badge badge-light">4</span>
             </a>
         </form>
