@@ -12,11 +12,11 @@
     <div class="text-left">
         <h3>List a Product for Sale</h3>
         <form method="post">
-            {% csrf_token  %}
+            {% csrf_token %}
             <!-- Name -->
             <div class="form-group">
                 <label for="inputName">Product Name</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Name" aria-label="Name">
+                {{ form.name }}
             </div>
 
             <!-- Price -->
@@ -26,43 +26,36 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input type="number" id="inputPrice" class="form-control"
-                           aria-label="Amount (to the nearest dollar)">
+                    {{ form.price }}
                 </div>
             </div>
 
             <!-- Description -->
             <div class="form-group">
                 <label for="inputDescription">Product Description</label>
-                <textarea type="text" class="form-control" id="inputDescription" rows="3"
-                          placeholder="Description"></textarea>
+                {{ form.description }}
             </div>
 
             <!-- Dimensions -->
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="inputEmail4">Height</label>
-                    <input type="number" class="form-control" id="inputEmail4" placeholder="Height">
+                    <label for="inputHeight">Height</label>
+                    {{ form.height }}
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="inputPassword4">Width</label>
-                    <input type="number" class="form-control" id="inputPassword4" placeholder="Width">
+                    <label for="inputWidth">Width</label>
+                    {{ form.width }}
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="inputPassword4">Depth</label>
-                    <input type="number" class="form-control" id="inputPassword4" placeholder="Depth">
+                    <label for="inputDepth">Depth</label>
+                    {{ form.depth }}
                 </div>
             </div>
 
             <!-- Category -->
             <div class="form-group">
                 <label for="inputCategory">Product Category</label>
-                <select class="form-control" id="inputCategory">
-                    <option>Category 1</option>
-                    <option>Category 2</option>
-                    <option>Category 3</option>
-                    <option>Category 4</option>
-                </select>
+                {{ form.category }}
             </div>
 
             <!-- Images -->

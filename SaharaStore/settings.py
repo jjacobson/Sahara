@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',  # new
 
     'users.apps.UsersConfig',  # new
-
+    'product',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser' # new

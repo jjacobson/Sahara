@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
+from product import views as product_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # new
-    path('list-item/', TemplateView.as_view(template_name='product/list-item.html'), name='list-item'),
+    path('list-item/', product_views.sell_item, name='list-item'),
     path('product/', TemplateView.as_view(template_name='product/product.html'), name='product'),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
 ]
