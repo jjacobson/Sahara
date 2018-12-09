@@ -1,0 +1,19 @@
+.content-wrapper {
+    padding-top: 2.5rem;
+    display: block;
+    margin:0 auto;
+    text-align: center;
+    width: 30%;
+}
+
+.title {
+    padding-bottom: 0.5rem;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+.text-muted {
+    font-size: smaller;
+}

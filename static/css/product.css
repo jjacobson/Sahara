@@ -1,0 +1,42 @@
+.content-wrapper {
+    padding-top: 2.5rem;
+    display: block;
+    margin:0 auto;
+    text-align: center;
+    width: 70%;
+}
+
+.content-wrapper > .row {
+    flex-wrap: nowrap;
+}
+
+.row {
+    margin-left: 0;
+}
+
+.star-row {
+    margin-right: 0.2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.card{
+    margin-left: 1rem;
+    text-align: left;
+    width: 100%;
+}
+
+.title {
+    padding-bottom: 0.5rem;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+.text-muted {
+    font-size: smaller;
+}
+
+.description {
+    padding-top: 1rem;
+}

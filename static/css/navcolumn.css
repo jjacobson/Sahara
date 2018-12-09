@@ -1,0 +1,63 @@
+.sidebar {
+    position: relative;
+    top: 0rem;
+    bottom: 0px;    
+    height: 100%;
+    width: 15%;
+    min-width: 250px;
+    max-width: 400px;
+    border-right: 1px solid rgba(0, 0, 0, .1);
+}
+
+.sidebar .content {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+}
+
+.sidebar .section > .title {
+    display: block;
+    padding-top: 1.25rem;
+    padding-right: 1.5rem;
+    padding-bottom: 0.25rem;
+    padding-left: 1.5rem; 
+    font-weight: 500;
+    color: rgba(0, 0, 0, .85)
+}
+
+.section .nav-item {
+    display: block;
+    padding-top: 0.25rem;
+    padding-right: 1.5rem;
+    padding-bottom: 0.25rem;
+    padding-left: 1.5rem; 
+    font-size: 90%;
+    text-decoration: none;
+    color: rgba(0, 0, 0, .65)
+}
+
+.section .nav-item:hover {
+    color: rgba(0, 0, 0, .85)
+}
+
+.section .active {
+    font-weight: 500;
+    color: rgba(0, 0, 0, .85)
+}
+
+.section  {
+    color: rgba(0, 0, 0, .85)
+}
+
+.footer {
+    width: 100%;
+    padding: 1.5rem;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}

@@ -1,0 +1,24 @@
+html, body {
+    height: 100%;
+}
+
+.content-wrapper {
+    position: fixed;
+    display: flex;
+    top: 3rem;
+    bottom: 0;
+    width: 100%;
+}
+
+.content {
+    flex: 1;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    visibility: visible;;
+    opacity: 1;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
