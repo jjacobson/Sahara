@@ -20,5 +20,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # new
+    path('list-item/', TemplateView.as_view(template_name='product/list-item.html'), name='list-item'),
+    path('product/', TemplateView.as_view(template_name='product/product.html'), name='product'),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
 ]
