@@ -22,7 +22,6 @@ from product import views as product_views
 from profile import views as profile_views
 from cart import views as cart_views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # new
@@ -30,8 +29,9 @@ urlpatterns = [
     path('update-item/<int:pk>', product_views.update_item, name='update-item'),
     path('product/<int:pk>', product_views.product_detail_view, name='product'),
     path('delete-item/<int:pk>', product_views.delete_view, name='delete_view'),
+    path('delete-cart-item/<int:pk>', cart_views.delete_cart_view, name='delete_cart_view'),
     path('add-to-cart/<int:pk>', cart_views.add_to_cart_view, name='add_to_cart_view'),
-    path('cart/', TemplateView.as_view(template_name='cart/cart.html'), name='cart'),
+    path('cart/', cart_views.cart_view, name='cart'),
     path('profile/<int:pk>', profile_views.profile_view, name='profile'),
     path('category/<str:category>', homepage_views.view_homepage, name='index'),
     path('', homepage_views.view_homepage, name='index'),

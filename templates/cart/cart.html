@@ -2,35 +2,40 @@
 
 {% block title %}Cart{% endblock %}
 
+{% block css %}
+    {% load static %}
+    <link href="{% static 'css/cart.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block content %}
 
     <div class="text-left">
-        <h1>{{user.first_name}}'s cart</h1>
+        <h3>Shopping Cart</h3>
+
         <div class="list-group">
-          <a href="#" class="list-group-item">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Item name you want to buy</h5>
-              <medium>$10.14</medium>
-            </div>
-            <p class="mb-1">Item description can go here</p>
-            <small>Quantity: 3</small>
-          </a>
-          <a href="#" class="list-group-item">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Item you want to buy</h5>
-              <medium>$10.14</medium>
-            </div>
-            <p class="mb-1">Item description can go here</p>
-            <small>Quantity: 1</small>
-          </a>
-          <a href="#" class="list-group-item">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Item you want to buy</h5>
-              <medium>$10.14</medium>
-            </div>
-            <p class="mb-1">Item description can go here</p>
-            <small>Quantity: 1</small>
-          </a>
+            {% for key, product in cart_products.items %}
+                <li class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"><a href="{% url 'product' pk=key %}">{{ product.name }}</a></h5>
+                        <p class="mb-1">${{ product.price }}</p>
+                    </div>
+                    <div class="float-right">
+                        <form class="delete" action="{% url 'delete_cart_view' key %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger modifier">
+                                <span class="oi oi-trash"></span>
+                            </button>
+                        </form>
+                    </div>
+                    <p class="mb-1">{{ product.description|truncatechars:65 }}</p>
+                    <small>Quantity: {{ product.quantity }}</small>
+                </li>
+            {% endfor %}
         </div>
+        <div class="text-right total">
+            <h5>Subtotal ({{ cart.count }} items) ${{ cart.total }}</h5>
+            <button type="button" class="btn btn-primary checkout">Check Out</button>
+        </div>
+
     </div>
 {% endblock %}

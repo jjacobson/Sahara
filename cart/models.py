@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from product.models import Product
@@ -29,4 +29,12 @@ def update_cart(sender, instance, **kwargs):
     line_cost = instance.quantity * instance.product.price
     instance.cart.total += line_cost
     instance.cart.count += instance.quantity
+    instance.cart.save()
+
+
+@receiver(post_delete, sender=Entry)
+def delete_cart_products(sender, instance, **kwargs):
+    line_cost = instance.quantity * instance.product.price
+    instance.cart.total -= line_cost
+    instance.cart.count -= instance.quantity
     instance.cart.save()

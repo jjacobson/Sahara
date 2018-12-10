@@ -6,3 +6,15 @@
     width: 60%;
 }
 
+.total {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.checkout {
+    margin-top: 0.5rem
+}
+
+.modifier {
+    padding: 4px 8px;
+}
