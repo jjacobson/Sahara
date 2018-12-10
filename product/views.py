@@ -62,7 +62,10 @@ def product_detail_view(request, pk):
     for review in reviews:
         total_stars += review.rating
 
-    rating = total_stars / reviews.count()
+    if reviews.count() > 0:
+        rating = total_stars / reviews.count()
+    else:
+        rating = 5
 
     return render(request, 'product/product.html',
                   context={'product': product, 'form': form, 'reviews': reviews, 'size': size, 'reviewed': reviewed,
