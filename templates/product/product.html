@@ -43,7 +43,7 @@
             </a>
         </div>
 
-        <div class="card">
+        <div class="card product-card">
             <div class="card-body ">
                 <div class="row">
                     <h3>{{ product.name }}</h3>
@@ -64,8 +64,8 @@
                     </div>
                 </div>
                 <div class="row star-row">
-                    <star-rating-static value="3" number="5"></star-rating-static>
-                    <a> &nbsp;&vert;&nbsp;10 Reviews</a>
+                    <star-rating-static value="{{ rating }}" number="5"></star-rating-static>
+                    <a> &nbsp;&vert;&nbsp;{{ reviews.count }} Reviews</a>
                 </div>
                 <div class="description">
                     {{ product.description }}
@@ -73,8 +73,88 @@
 
             </div>
         </div>
-
     </div>
+
+    <div class="text-left divider">
+        <h5>Product Specifications</h5>
+        <div class="row">
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <th class="text-nowrap" scope="row">Category</th>
+                    <td>{{ product.category }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap" scope="row">Height</th>
+                    <td>{{ product.height }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap" scope="row">Width</th>
+                    <td colspan="5">{{ product.width }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap" scope="row">Depth</th>
+                    <td colspan="5">{{ product.depth }}</td>
+                </tr>
+                <tr>
+                    <th class="text-nowrap" scope="row">Weight</th>
+                    <td colspan="5">{{ product.weight }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="divider-reviews text-left">
+        {% if size > 0 and not reviewed %}
+            <div class="col divider-bottom">
+                <button class="btn btn-secondary float-right" onclick="reveal_review_space()">Add Your Review</button>
+            </div>
+            <h5>Product Reviews</h5>
+        {% endif %}
+    </div>
+    <div class="row hidden divider-review full-width" id="review-space">
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'submit_review_view' pk=product.pk %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        {{ form.title }}
+                        <div class="col">
+                            <button class="btn btn-success float-right" type="submit">Save</button>
+                        </div>
+                    </div>
+                    <div class="row star-row">
+                        {{ form.rating }}
+                        <star-rating value="5" number="5"></star-rating>
+                    </div>
+                    <div class="description">
+                        {{ form.body }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% for review in reviews %}
+        <div class="row divider-review full-width">
+            <div class="card">
+                <div class="card-body ">
+                    <div class="row">
+                        <h5>{{ review.title }}</h5>
+                    </div>
+                    <div class="row">
+                        <a>Review by:&nbsp;</a>
+                        <a href="#">{{ review.reviewer.first_name }}&nbsp;{{ review.reviewer.last_name }}</a>
+                    </div>
+                    <div class="row star-row">
+                        <star-rating-static value="{{ review.rating }}" number="5"></star-rating-static>
+                    </div>
+                    <div class="description">
+                        {{ review.body }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 
 {% endblock %}
 

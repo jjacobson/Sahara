@@ -20,22 +20,22 @@ class Cart(models.Model):
 
 
 class Entry(models.Model):
-    product = models.ForeignKey(Product, null=True, on_delete='CASCADE')
-    cart = models.ForeignKey(Cart, null=True, on_delete='CASCADE')
+    product = models.ForeignKey(Product, null=True, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, null=True, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 
 
 class Transaction(models.Model):
-    seller = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+    #seller = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    buyer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    products = models.ManyToManyField(Product)
 
 
 class Receipt(models.Model):
-    sell_date = models.DateTimeField()
-    ship_date = models.DateTimeField()
-    ship_company = models.CharField(max_length=100)
-    ship_track = models.CharField(max_length=40)
+    #sell_date = models.DateTimeField()
+    #ship_date = models.DateTimeField()
+    #ship_company = models.CharField(max_length=100)
+    #ship_track = models.CharField(max_length=40)
     transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
 
 
@@ -43,6 +43,8 @@ class Review(models.Model):
     title = models.CharField(max_length=50)
     body = models.CharField(max_length=255)
     rating = models.DecimalField(max_digits=3, decimal_places=2)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    reviewer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE)
 
 

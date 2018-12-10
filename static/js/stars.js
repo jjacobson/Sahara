@@ -16,6 +16,8 @@ class StarRating extends HTMLElement {
     set number(val) {
         this.setAttribute('number', val);
 
+        document.getElementById('inputRating').value = this.value;
+
         this.stars = [];
 
         while (this.firstChild) {
@@ -59,6 +61,8 @@ class StarRating extends HTMLElement {
                 starIndex = Math.floor((e.pageX - box.left) / box.width * this.stars.length);
 
             this.value = starIndex + 1;
+
+            document.getElementById('inputRating').value = this.value;
 
             let rateEvent = new Event('rate');
             this.dispatchEvent(rateEvent);

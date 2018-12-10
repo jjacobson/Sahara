@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
-from cart.models import Cart, Entry
+from cart.models import Cart, Entry, Transaction, Receipt
 from product.models import Product
 
 
@@ -16,7 +16,7 @@ def add_to_cart_view(request, pk):
 
     print('after', cart, 'entries: ', list_of_entries)
 
-    return render(request, 'product/product.html', context={'product': product})
+    return redirect('product', pk)
 
 
 def cart_view(request):
@@ -33,6 +33,21 @@ def cart_view(request):
             cart_products[key] = {'name': entry.product.name, 'price': entry.product.price, 'quantity': entry.quantity,
                                   'description': entry.product.description}
     return render(request, 'cart/cart.html', context={'cart_products': cart_products})
+
+
+def checkout_view(request):
+    profile = request.user
+    cart = get_object_or_404(Cart, owner=profile)
+    print(cart)
+    transaction, created = Transaction.objects.get_or_create(products__in=cart.products.all(), buyer=profile)
+    receipt, created = Receipt.objects.get_or_create(transaction=transaction)
+    receipt.save()
+    print(cart)
+
+    for entry in cart.entry_set.all():
+        entry.delete()
+
+    return redirect('profile', profile.pk)
 
 
 def delete_cart_view(request, pk):

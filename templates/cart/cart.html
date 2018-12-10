@@ -34,7 +34,12 @@
         </div>
         <div class="text-right total">
             <h5>Subtotal ({{ cart.count }} items) ${{ cart.total }}</h5>
-            <button type="button" class="btn btn-primary checkout">Check Out</button>
+
+            <form action="{% url 'checkout_view' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary checkout">Check Out</button>
+            </form>
+
         </div>
 
     </div>
