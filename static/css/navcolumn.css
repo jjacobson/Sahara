@@ -1,7 +1,7 @@
 .sidebar {
     position: relative;
-    top: 0rem;
-    bottom: 0px;    
+    top: 0;
+    bottom: 0;
     height: 100%;
     width: 15%;
     min-width: 250px;

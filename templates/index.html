@@ -18,11 +18,22 @@
                     <span class="title">Product Categories</span>
                     <ul class="nav flex-column">
                         <li>
-                            <a class="nav-item active" href="#">Featured</a>
+                            {% if not current_category %}
+                                <a class="nav-item active" href="{% url 'index' %}">Featured</a>
+                            {% else %}
+                                <a class="nav-item" href="{% url 'index' %}">Featured</a>
+                            {% endif %}
                         </li>
                         {% for category in categories %}
                             <li>
-                                <a class="nav-item" href="#">{{ category.name }}</a>
+                                {% if category.name == current_category %}
+                                    <a class="nav-item active"
+                                       href="{% url 'index' category=category.name %}">{{ category.name }}</a>
+                                {% else %}
+                                    <a class="nav-item"
+                                       href="{% url 'index' category=category.name %}">{{ category.name }}</a>
+                                {% endif %}
+
                             </li>
                         {% endfor %}
                     </ul>
@@ -34,18 +45,22 @@
 
     <!-- Main Content -->
     <div class="content is-shown">
-        <h1>Featured</h1>
+        {% if not current_category %}
+            <h1>Featured</h1>
+        {% else %}
+            <h1>{{ current_category }}</h1>
+        {% endif %}
         <div class="row">
             {% for product in products %}
-            <div class="col-sm-6 col-md-4 col-lg-3">
-                <a class="card product" href="{% url 'product' pk=product.pk %}">
-                    <img class="card-img-top" src="http://via.placeholder.com/216x200" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <h7 class="card-price">${{ product.price }}</h7>
-                    </div>
-                </a>
-            </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <a class="card product" href="{% url 'product' pk=product.pk %}">
+                        <img class="card-img-top" src="http://via.placeholder.com/216x200" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <h7 class="card-price">${{ product.price }}</h7>
+                        </div>
+                    </a>
+                </div>
             {% endfor %}
         </div>
     </div>

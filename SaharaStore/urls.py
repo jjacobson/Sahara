@@ -33,5 +33,7 @@ urlpatterns = [
     path('add-to-cart/<int:pk>', cart_views.add_to_cart_view, name='add_to_cart_view'),
     path('cart/', TemplateView.as_view(template_name='cart/cart.html'), name='cart'),
     path('profile/<int:pk>', profile_views.profile_view, name='profile'),
+    path('category/<str:category>', homepage_views.view_homepage, name='index'),
     path('', homepage_views.view_homepage, name='index'),
+
 ]
