@@ -17,3 +17,7 @@
 .text-muted {
     font-size: smaller;
 }
+
+.modifier {
+    padding: 4px 8px;
+}

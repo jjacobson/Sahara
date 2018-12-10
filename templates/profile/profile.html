@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.first_name }}{% endblock %}
+
+{% block css %}
+    {% load static %}
+    <link href="{% static 'css/profile.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#profile" role="tab"
+                       aria-controls="home" aria-selected="true">Profile</a>
+                </li>
+                {% if user.is_authenticated and profile.pk == user.pk %}
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#orders" role="tab"
+                           aria-controls="profile"
+                           aria-selected="false">Orders</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" id="listed-tab" data-toggle="tab" href="#listed-items" role="tab"
+                       aria-controls="listed-items"
+                       aria-selected="false">Listed Items</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body tab-content">
+
+            <!-- Profile info -->
+            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
+
+            </div>
+
+            <!-- Orders -->
+            <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                x
+                <span class="iconic" data-glyph="pencil" title="edit" aria-hidden="true"></span>
+            </div>
+
+            <!-- Items for sale -->
+            <div class="tab-pane fade" id="listed-items" role="tabpanel" aria-labelledby="listed-tab">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Update</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td scope="row">{{ product.name }}</td>
+                            <td>{{ product.category }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning modifier" onclick="" tabindex="-1">
+                                    <span class="oi oi-pencil"></span>
+                                </button>
+                                <button type="button" class="btn btn-danger modifier" onclick="" tabindex="-1">
+                                    <span class="oi oi-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

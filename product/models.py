@@ -1,6 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 # Create your models here.
+from users.models import CustomUser
+
+
 class ProductCategory(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
@@ -16,4 +20,5 @@ class Product(models.Model):
     width = models.IntegerField(blank=True, null=True)
     depth = models.IntegerField(blank=True, null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2)
+    seller = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     category = models.ForeignKey('ProductCategory', on_delete=models.CASCADE)

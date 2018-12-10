@@ -10,6 +10,7 @@
     {% load static %}
     <!-- CSS -->
     <link href="{% static 'css/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.0/font/css/open-iconic-bootstrap.min.css" />
     <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
     {% block css %}{% endblock %}
 
@@ -37,7 +38,7 @@
                     <a class="nav-link disabled" href="{% url 'list-item' %}">Sell Item</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="{% url 'profile' %}">Profile</a>
+                    <a class="nav-link disabled" href="{% url 'profile' pk=user.pk %}">Profile</a>
                 </li>
             {% endif %}
         </ul>
@@ -50,7 +51,7 @@
             </a>
         </form>
         <form class="form-inline my-2 my-lg-0">
-            <a href="{% url 'account_logout' %}" class="btn btn-outline-success my-2 my-sm-0" role="button">Sign Out</a>
+            <a href="{% url 'account_logout' %}" class="btn btn-outline-warning my-2 my-sm-0" role="button">Sign Out</a>
         </form>
     {% else %}
         <form class="form-inline my-2 my-lg-0">

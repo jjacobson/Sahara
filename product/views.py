@@ -10,7 +10,8 @@ def sell_item(request):
     if request.method == "POST":
         form = ProductForm(request.POST)
         if form.is_valid():
-            product = form.save()
+            product = form.save(commit=False)
+            product.seller = request.user
             product.save()
             return redirect('product', pk=product.pk)
         else:
