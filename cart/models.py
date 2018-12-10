@@ -45,7 +45,9 @@ class Review(models.Model):
     rating = models.DecimalField(max_digits=3, decimal_places=2)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     reviewer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE)
+    #receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE)
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+
 
 
 @receiver(post_save, sender=Entry)

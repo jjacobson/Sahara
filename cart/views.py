@@ -38,11 +38,17 @@ def cart_view(request):
 def checkout_view(request):
     profile = request.user
     cart = get_object_or_404(Cart, owner=profile)
-    print(cart)
-    transaction, created = Transaction.objects.get_or_create(products__in=cart.products.all(), buyer=profile)
-    receipt, created = Receipt.objects.get_or_create(transaction=transaction)
-    receipt.save()
-    print(cart)
+    products = []
+    for entry in Entry.objects.all().filter(cart=cart):
+        products.append(entry.product)
+
+    print(cart.products)
+    transaction = Transaction.objects.create(buyer=profile)
+    transaction.products.set(products)
+    transaction.save()
+    #receipt, created = Receipt.objects.get_or_create(transaction=transaction)
+
+    print(transaction)
 
     for entry in cart.entry_set.all():
         entry.delete()

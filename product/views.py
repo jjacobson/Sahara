@@ -53,11 +53,19 @@ def product_detail_view(request, pk):
     reviews = Review.objects.all().filter(product=product)
     form = ReviewForm()
 
-    c = [pk]
-    transaction = reduce(lambda qs, key: qs.filter(pk=pk), c, Transaction.objects.all())
-    size = transaction.count()
+    size = 0
+    transactions = Transaction.objects.all()
+    for tran in transactions:
+        print(tran.products.all())
+        if product in tran.products.all():
+            size += 1
 
-    reviewed = not Review.objects.all().filter(product=product, reviewer=request.user).count() == 0
+    reviewed = False
+    reviews = Review.objects.all().filter(product=product)
+    for rev in reviews:
+        if rev.reviewer == request.user:
+            reviewed = True
+
     total_stars = 0
     for review in reviews:
         total_stars += review.rating
@@ -66,7 +74,7 @@ def product_detail_view(request, pk):
         rating = total_stars / reviews.count()
     else:
         rating = 5
-
+    print(reviewed, size)
     return render(request, 'product/product.html',
                   context={'product': product, 'form': form, 'reviews': reviews, 'size': size, 'reviewed': reviewed,
                            'rating': rating})
@@ -88,18 +96,21 @@ def delete_view(request, pk):
 def submit_review_view(request, pk):
     if request.method == "POST":
         form = ReviewForm(request.POST)
+        product = get_object_or_404(Product, pk=pk)
 
         # todo dear god fix this mess
-        c = [pk]
-        transaction = reduce(lambda qs, key: qs.filter(pk=pk), c, Transaction.objects.all())
-        print(transaction)
-        receipt = get_object_or_404(Receipt, transaction=transaction[0])
+        t = []
+        transactions = Transaction.objects.all()
+        for tran in transactions:
+            if product in tran.products.all():
+                t.append(tran)
+        print(t)
         product = get_object_or_404(Product, pk=pk)
         if form.is_valid():
             review = form.save(commit=False)
-            review.receipt = receipt
+            review.transaction = t[0]
             review.product = product
-            review.reviewer = transaction[0].buyer
+            review.reviewer = request.user
             review.save()
             return redirect('product', pk=pk)
         else:

@@ -32,13 +32,14 @@
         <div class="card-body tab-content">
 
             <!-- Profile info -->
-            <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
-
+            <div class="tab-pane fade show active text-left" id="profile" role="tabpanel" aria-labelledby="home-tab">
+                <h6>Full Name: {{ profile.first_name }} {{ profile.last_name }}</h6>
+                <h6>Email Address: {{ profile.email }}</h6>
             </div>
 
             <!-- Orders -->
             <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                x
+                Nothing here yet
                 <span class="iconic" data-glyph="pencil" title="edit" aria-hidden="true"></span>
             </div>
 
