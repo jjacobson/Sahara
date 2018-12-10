@@ -55,11 +55,12 @@ def product_detail_view(request, pk):
     form = ReviewForm()
 
     size = 0
-    transactions = Transaction.objects.all().filter(buyer=request.user)
-    for tran in transactions:
-        print(tran.products.all())
-        if product in tran.products.all():
-            size += 1
+    if not request.user.is_anonymous:
+        transactions = Transaction.objects.all().filter(buyer=request.user)
+        for tran in transactions:
+            print(tran.products.all())
+            if product in tran.products.all():
+                size += 1
 
     reviewed = False
     reviews = Review.objects.all().filter(product=product)
