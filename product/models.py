@@ -19,6 +19,6 @@ class Product(models.Model):
     weight = models.IntegerField(blank=True, null=True)
     width = models.IntegerField(blank=True, null=True)
     depth = models.IntegerField(blank=True, null=True)
-    price = models.DecimalField(max_digits=9, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     seller = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     category = models.ForeignKey('ProductCategory', on_delete=models.CASCADE)

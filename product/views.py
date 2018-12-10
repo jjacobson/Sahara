@@ -2,6 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
+from cart.models import Cart
 from product.forms import ProductForm
 from .models import ProductCategory, Product
 
@@ -51,9 +52,13 @@ def product_detail_view(request, pk):
 
 
 def delete_view(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    product.delete()
-
     profile = request.user
+    product = get_object_or_404(Product, pk=pk)
+
+    seller = product.seller
+    if not product == seller:
+        return redirect('index')
+
+    product.delete()
     products = profile.product_set.all()
     return render(request, 'profile/profile.html', context={'profile': profile, 'products': products})

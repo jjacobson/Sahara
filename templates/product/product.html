@@ -48,7 +48,12 @@
                 <div class="row">
                     <h3>{{ product.name }}</h3>
                     <div class="col">
-                        <button class="btn btn-success float-right">Add to Cart</button>
+
+                        <form action="{% url 'add_to_cart_view' pk=product.pk %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-success float-right" type="submit">Add to Cart</button>
+                        </form>
+
                     </div>
                 </div>
                 <div class="row">
