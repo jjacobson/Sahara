@@ -58,7 +58,7 @@
                 </div>
                 <div class="row">
                     <a>Sold by:&nbsp;</a>
-                    <a href="#">Seller name</a>
+                    <a href="{% url 'profile' pk=product.seller.pk %}">{{ product.seller.first_name }}&nbsp;{{ product.seller.last_name }}</a>
                     <div class="col">
                         <a class="float-right">${{ product.price }}</a>
                     </div>

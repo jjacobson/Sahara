@@ -22,3 +22,4 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     seller = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     category = models.ForeignKey('ProductCategory', on_delete=models.CASCADE)
+

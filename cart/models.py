@@ -6,6 +6,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 from product.models import Product
+from users.models import Address
 
 
 class Cart(models.Model):
@@ -22,6 +23,27 @@ class Entry(models.Model):
     product = models.ForeignKey(Product, null=True, on_delete='CASCADE')
     cart = models.ForeignKey(Cart, null=True, on_delete='CASCADE')
     quantity = models.PositiveIntegerField()
+
+
+class Transaction(models.Model):
+    seller = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    address = models.ForeignKey(Address, on_delete=models.CASCADE)
+
+
+class Receipt(models.Model):
+    sell_date = models.DateTimeField()
+    ship_date = models.DateTimeField()
+    ship_company = models.CharField(max_length=100)
+    ship_track = models.CharField(max_length=40)
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+
+
+class Review(models.Model):
+    title = models.CharField(max_length=50)
+    body = models.CharField(max_length=255)
+    rating = models.DecimalField(max_digits=3, decimal_places=2)
+    receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE)
 
 
 @receiver(post_save, sender=Entry)
