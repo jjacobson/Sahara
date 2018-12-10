@@ -45,8 +45,8 @@ class ProductForm(forms.ModelForm):
         attrs={
             'class': 'form-control',
             'id': 'inputWidth',
-            'placeholder': 'Depth',
-            'aria-label': 'Depth'
+            'placeholder': 'Width',
+            'aria-label': 'Width'
         }
     ))
 

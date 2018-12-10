@@ -18,6 +18,7 @@ def sell_item(request):
             product.save()
             return redirect('product', pk=product.pk)
         else:
+            print(form.errors)
             print(request.POST)
     else:
         form = ProductForm()
@@ -54,7 +55,7 @@ def product_detail_view(request, pk):
     form = ReviewForm()
 
     size = 0
-    transactions = Transaction.objects.all()
+    transactions = Transaction.objects.all().filter(buyer=request.user)
     for tran in transactions:
         print(tran.products.all())
         if product in tran.products.all():
@@ -85,7 +86,7 @@ def delete_view(request, pk):
     product = get_object_or_404(Product, pk=pk)
 
     seller = product.seller
-    if not product == seller:
+    if not profile == seller:
         return redirect('index')
 
     product.delete()

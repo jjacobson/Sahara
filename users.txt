@@ -1,0 +1,42 @@
+admin@admin.com
+password
+
+John Doe
+JohnDoe@mail.com
+password
+
+Donna Doe
+DonnaDoe@mail.com
+password
+
+Brett Boe
+BrettBoe@mail.com
+password
+
+Jane Doe
+JaneDoe@mail.com
+password
+
+Larry Loe
+LarryLoe@mail.com
+password
+
+Joe Doe
+JoeDoe@mail.com
+password
+
+Frank Foe
+FrankFoe@mail.com
+password
+
+Mary Major
+MaryMajor@mail.com
+password
+
+John Nokes
+JohnNokes@mail.com
+password
+
+John Smith
+JohnSmith@mail.com
+password
