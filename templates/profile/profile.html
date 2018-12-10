@@ -54,22 +54,30 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     {% for product in products %}
                         <tr>
                             <td scope="row">{{ product.name }}</td>
                             <td>{{ product.category }}</td>
                             <td>{{ product.price }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning modifier" onclick="" tabindex="-1">
+                                <!-- Edit button -->
+                                <a role="button" href="{% url 'update-item' pk=product.pk %}"
+                                   class="btn btn-warning modifier">
                                     <span class="oi oi-pencil"></span>
-                                </button>
-                                <button type="button" class="btn btn-danger modifier" onclick="" tabindex="-1">
-                                    <span class="oi oi-trash"></span>
-                                </button>
+                                </a>
+
+                                <!-- Delete button -->
+                                <form class="delete" action="{% url 'delete_view' pk=product.pk %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger modifier">
+                                        <span class="oi oi-trash"></span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
-
                     {% endfor %}
+
                     </tbody>
                 </table>
             </div>

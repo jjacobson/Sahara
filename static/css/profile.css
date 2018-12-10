@@ -21,3 +21,7 @@
 .modifier {
     padding: 4px 8px;
 }
+
+.delete {
+    display: inline;
+}
