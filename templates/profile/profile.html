@@ -50,7 +50,10 @@
                         <th scope="col">Product Name</th>
                         <th scope="col">Category</th>
                         <th scope="col">Price</th>
-                        <th scope="col">Update</th>
+
+                        {% if user.is_authenticated and profile.pk == user.pk %}
+                            <th scope="col">Update</th>
+                        {% endif %}
                     </tr>
                     </thead>
                     <tbody>
@@ -60,21 +63,23 @@
                             <td scope="row">{{ product.name }}</td>
                             <td>{{ product.category }}</td>
                             <td>{{ product.price }}</td>
-                            <td>
-                                <!-- Edit button -->
-                                <a role="button" href="{% url 'update-item' pk=product.pk %}"
-                                   class="btn btn-warning modifier">
-                                    <span class="oi oi-pencil"></span>
-                                </a>
+                            {% if user.is_authenticated and profile.pk == user.pk %}
+                                <td>
+                                    <!-- Edit button -->
+                                    <a role="button" href="{% url 'update-item' pk=product.pk %}"
+                                       class="btn btn-warning modifier">
+                                        <span class="oi oi-pencil"></span>
+                                    </a>
 
-                                <!-- Delete button -->
-                                <form class="delete" action="{% url 'delete_view' pk=product.pk %}" method="POST">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger modifier">
-                                        <span class="oi oi-trash"></span>
-                                    </button>
-                                </form>
-                            </td>
+                                    <!-- Delete button -->
+                                    <form class="delete" action="{% url 'delete_view' pk=product.pk %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger modifier">
+                                            <span class="oi oi-trash"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
 

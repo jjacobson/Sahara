@@ -17,3 +17,11 @@ def add_to_cart_view(request, pk):
     print('after', cart, 'entries: ', list_of_entries)
 
     return render(request, 'product/product.html', context={'product': product})
+
+
+def cart_view(request):
+    profile = request.user
+    cart, created = Cart.objects.get_or_create(owner=profile)
+
+
+    return render(request, 'product/product.html', context={'product': product})
