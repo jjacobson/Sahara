@@ -1,2 +1,2 @@
 # Sahara
-Django webstore
+Django webstore for CS425 Database Systems
